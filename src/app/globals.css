@@ -1,6 +1,7 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
 
 *,
 *::before,
@@ -86,55 +87,73 @@ body,
   @apply pt-8 pb-5 px-8;
 }
 
+/* PERBAIKAN: Ganti primary-700 dengan variabel CSS atau class yang valid */
 .mapboxgl-popup-content {
-  @apply !bg-primary-700;
-  @apply !rounded-lg;
-  @apply !py-2;
-  @apply !px-3;
+  background-color: hsl(var(--primary)) !important;
+  border-radius: 0.5rem !important;
+  padding: 0.5rem 0.75rem !important;
 }
 
 .mapboxgl-popup-anchor-top .mapboxgl-popup-tip {
-  @apply !border-b-primary-700;
+  border-bottom-color: hsl(var(--primary)) !important;
 }
 
 .mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
-  @apply !border-t-primary-700;
+  border-top-color: hsl(var(--primary)) !important;
 }
 
 .mapboxgl-popup-anchor-left .mapboxgl-popup-tip {
-  @apply !border-r-primary-700;
+  border-right-color: hsl(var(--primary)) !important;
 }
 
 .mapboxgl-popup-anchor-right .mapboxgl-popup-tip {
-  @apply !border-l-primary-700;
+  border-left-color: hsl(var(--primary)) !important;
 }
 
 .marker-popup {
-  @apply bg-primary-700;
-  @apply text-white;
-  @apply p-0;
-  @apply m-0;
-  @apply !flex;
-  @apply justify-between;
-  @apply items-center;
-  @apply gap-3;
+  background-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  padding: 0;
+  margin: 0;
+  display: flex !important;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
 }
 
 .marker-popup-image {
-  @apply w-10 h-10 object-cover bg-white rounded-lg;
+  width: 2.5rem;
+  height: 2.5rem;
+  object-fit: cover;
+  background-color: white;
+  border-radius: 0.5rem;
 }
 
 .marker-popup-price {
-  @apply text-sm font-semibold text-primary-200;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+  color: hsl(var(--primary) / 0.8);
 }
 
 .marker-popup-title {
-  @apply hover:underline hover:text-blue-300 cursor-pointer;
-  @apply focus:outline-none;
+  cursor: pointer;
+}
+
+.marker-popup-title:hover {
+  text-decoration: underline;
+  color: #93c5fd;
+}
+
+.marker-popup-title:focus {
+  outline: none;
 }
 
 .marker-popup-price-unit {
-  @apply text-xs text-primary-500 font-normal;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  color: hsl(var(--primary) / 0.6);
+  font-weight: 400;
 }
 
 /* scrollbar styling */
@@ -147,26 +166,27 @@ body,
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-primary-200;
+  background-color: hsl(var(--primary) / 0.3);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-primary-300;
+  background-color: hsl(var(--primary) / 0.5);
 }
 
 @layer base {
   * {
-    @apply border-border;
+    border-color: hsl(var(--border));
   }
   body {
-    @apply bg-background text-foreground;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
   }
 }
 
 /* Amplify UI Overrides */
 [data-amplify-authenticator] {
-  --amplify-components-button-primary-background-color: var(--primary);
+  --amplify-components-button-primary-background-color: hsl(var(--primary));
   --amplify-components-button-primary-hover-background-color: hsl(
     var(--primary) / 0.9
   );
@@ -206,8 +226,9 @@ body,
   margin-top: 1rem;
   background-color: hsl(var(--primary)) !important;
   color: hsl(var(--primary-foreground)) !important;
-  @apply font-medium;
-  @apply text-sm;
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 }
 
 [data-amplify-authenticator] .amplify-button--primary:hover {
@@ -228,7 +249,9 @@ body,
 }
 
 [data-amplify-authenticator] .amplify-label {
-  @apply text-sm font-medium;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
   color: hsl(var(--foreground));
 }
 
@@ -236,7 +259,8 @@ body,
   border-color: hsl(var(--input));
   border-radius: var(--radius);
   height: 2.5rem;
-  @apply text-sm;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 }
 
 [data-amplify-authenticator] .amplify-text--error {
@@ -245,5 +269,11 @@ body,
 
 /* Sonner Toast Styles */
 [data-close-button="true"] {
-  @apply bg-background border-border text-foreground hover:bg-muted;
+  background-color: hsl(var(--background));
+  border-color: hsl(var(--border));
+  color: hsl(var(--foreground));
+}
+
+[data-close-button="true"]:hover {
+  background-color: hsl(var(--accent));
 }
