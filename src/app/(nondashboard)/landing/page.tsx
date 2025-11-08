@@ -1,5 +1,10 @@
 import React from "react";
+import HeroSection from "./HeroSection";
 
 export default function Landing() {
-  return <div>Landing</div>;
+  return (
+    <div>
+      <HeroSection />\
+    </div>
+  );
 }
