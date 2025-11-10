@@ -2,6 +2,7 @@ import HeroSection from "./HeroSection";
 import FeatureSection from "./FeatureSection";
 import DiscoverSection from "./DiscoverSection";
 import CallToActionSection from "./CallToActionSection";
+import FooterSection from "./FooterSection";
 
 export default function Landing() {
   return (
@@ -10,6 +11,7 @@ export default function Landing() {
       <FeatureSection />
       <DiscoverSection />
       <CallToActionSection />
+      <FooterSection />
     </div>
   );
 }
