@@ -26,9 +26,9 @@ export default function Navbar() {
                 height={24}
                 className="w-6 h-6"
               />
-              <div className="text-xl font-bold">
+              <div className="text-xl font-light">
                 REAL
-                <span className="text-secondary-500 font-light hover:!text-primary-300">
+                <span className="text-secondary-600 font-extrabold hover:!text-primary-300">
                   ESTATE
                 </span>
               </div>
