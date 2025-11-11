@@ -50,7 +50,37 @@ export default function FooterSection() {
             >
               <FontAwesomeIcon icon={faFacebook} className="h-6 w-6" />
             </a>
+
+            <a
+              href="#"
+              aria-label="Instagram"
+              className="hover:text-primary-600"
+            >
+              <FontAwesomeIcon icon={faInstagram} className="h-6 w-6" />
+            </a>
+
+            <a href="#" aria-label="Twitter" className="hover:text-primary-600">
+              <FontAwesomeIcon icon={faTwitter} className="h-6 w-6" />
+            </a>
+
+            <a
+              href="#"
+              aria-label="LinkedIn"
+              className="hover:text-primary-600"
+            >
+              <FontAwesomeIcon icon={faLinkedin} className="h-6 w-6" />
+            </a>
+
+            <a href="#" aria-label="YouTube" className="hover:text-primary-600">
+              <FontAwesomeIcon icon={faYoutube} className="h-6 w-6" />
+            </a>
           </div>
+        </div>
+        <div className="mt-8 text-center text-sm text-gray-500 flex justify-center space-x-4">
+          <span>© REAL ESTATE. All rights reserved.</span>
+          <Link href="/privacy">Privacy Policy</Link>
+          <Link href="/terms">Terms of Service</Link>
+          <Link href="/faq">FAQ</Link>
         </div>
       </div>
     </footer>
