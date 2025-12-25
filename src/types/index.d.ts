@@ -137,4 +137,4 @@ declare global {
   }
 }
 
-export {};
+export { Manager, Tenant };

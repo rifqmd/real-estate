@@ -145,7 +145,7 @@ const Auth = ({ children }: { children: React.ReactNode }) => {
 
   const isAuthPage = pathname.match(/^\/(signin|signup|forgot-password)$/);
   const isDashboardPage =
-    pathname.startsWith("/manager") || pathname.startsWith("/tenant");
+    pathname.startsWith("/managers") || pathname.startsWith("/tenants");
 
   // redirect authenticated user away from auth pages
   useEffect(() => {
