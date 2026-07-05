@@ -1,7 +1,7 @@
 import { fetchAuthSession, getCurrentUser } from "aws-amplify/auth";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-// import { Manager, Tenant } from "@/types/prismaTypes";
-import { Manager, Tenant } from "@/types/index";
+import { Manager, Tenant } from "@/types/prismaTypes";
+import { createNewUserInDatabase } from "@/lib/utils";
 
 export const api = createApi({
   baseQuery: fetchBaseQuery({
@@ -19,7 +19,7 @@ export const api = createApi({
   tagTypes: [],
   endpoints: (build) => ({
     getAuthUser: build.query<User, void>({
-      queryFn: async (_, _queryApi, _extraOptions, fetchWithBQ) => {
+      queryFn: async (_, _queryApi, _extraoptions, fetchWithBQ) => {
         try {
           const session = await fetchAuthSession();
           const { idToken } = session.tokens ?? {};
@@ -33,7 +33,19 @@ export const api = createApi({
 
           let userDetailsResponse = await fetchWithBQ(endpoint);
 
-          // if user doesn't exist in our database, create a new user
+          // if user doesn't exist, create new user
+          if (
+            userDetailsResponse.error &&
+            userDetailsResponse.error.status === 404
+          ) {
+            userDetailsResponse = await createNewUserInDatabase(
+              user,
+              // idToken,
+              userRole,
+              fetchWithBQ
+            );
+          }
+
           return {
             data: {
               cognitoInfo: { ...user },
@@ -42,13 +54,11 @@ export const api = createApi({
             },
           };
         } catch (error: any) {
-          return {
-            error: error.message || "Failed to fetch authenticated user",
-          };
+          return { error: error.message || "Could not fetch user data" };
         }
       },
     }),
   }),
 });
 
-export const {} = api;
+export const { useGetAuthUserQuery } = api;

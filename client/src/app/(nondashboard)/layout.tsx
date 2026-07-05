@@ -1,5 +1,8 @@
+"use client";
+
 import Navbar from "@/components/Navbar";
 import { NAVBAR_HEIGHT } from "@/lib/constants";
+import { useGetAuthUserQuery } from "@/state/api";
 import React from "react";
 
 export default function Layout({
@@ -7,6 +10,9 @@ export default function Layout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const { data: authUser } = useGetAuthUserQuery();
+  console.log("auth: ", authUser);
+
   return (
     <div className="h-full w-full">
       <Navbar />
